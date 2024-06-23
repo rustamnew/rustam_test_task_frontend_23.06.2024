@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чеклист</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    body {
+        font-family: Inter, sans-serif;
+    }
+
+    button {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        border: none;
+        background: none;
+        outline: none;
+        white-space: nowrap;
+        cursor: pointer;
+        font-family: Inter, sans-serif;
+
+        color: #4777ED;
+        padding: 12px 25px;
+        background-color: #F4F8FF;
+        border-radius: 6px;
+        font-size: 14px;
+    }
+    button:hover {
+        background-color: #e6e8eb;
+    }
+
+    .panel {
+        background-color: #3579F5;
+        color: #FFFFFF;
+        padding: 10px 18px 12px 22px;
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 706px;
+    }
+
+    .progress {
+        position: relative;
+        margin-right: 16px;
+        padding-top: 5px;
+    }
+    .progress .steps {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        font-size: 20px;
+        line-height: 30px;
+    }
+    
+    svg {
+        height: 60px;
+        width: 60px;
+        transform: scale(1.1);
+    }
+    svg .circle-progress,
+    svg .circle-track {
+        fill: transparent;
+    }
+    svg .circle-track {
+        stroke: rgba(250, 250, 250, 0.5);
+        stroke-width: 1px;
+    }
+    svg .circle-progress {
+        stroke: rgba(250, 250, 250, 1);
+        stroke-width: 3px;
+        stroke-linecap: round;
+
+        --track: 175.9; /* stroke-dasharray = 2π * r */
+        --trackRemaining: calc( var(--track) * var(--percent) * 0.01);
+
+        stroke-dasharray: var(--track);   
+        stroke-dashoffset: calc(var(--track) - var(--trackRemaining)); 
+
+        transform: rotate(-90deg);
+        transform-origin: center;
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-right: 68px;
+    }
+    .info .badge {
+        font-size: 12px;
+        line-height: 18px;
+        background-color: #2364DB;
+        padding: 0 13px;
+        border-radius: 40px;
+        margin-bottom: 4px;
+    }
+    .info .title {
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 20px;
+        margin-bottom: 4px;
+    }
+    .info .subtitle {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .control {
+        padding-top: 6px;
+    }
+</style>
+
+<body>
+    <div class="panel">
+        <div class="progress">
+
+            <svg style="--percent:2">
+                <!--  cx, cy = Диаметр / 2  -- >
+                <! -- r = (Диаметр / 2) - stroke-width   -->
+
+                <circle class="circle-track" cx="30" cy="30" r="27"></circle>
+                <circle class="circle-progress" cx="30" cy="30" r="27"></circle>
+            </svg>
+
+            <span class="steps">0/7</span>
+        </div>
+
+        <div class="info">
+            <div class="badge">Чеклист</div>
+            <div class="title">Выполнено: 0 из 7 действий</div>
+            <div class="subtitle">Следующее действие: Созвониться с клиентом до 23.05.24 12:00</div>
+        </div>
+
+        <div class="control">
+            <button>Открыть чеклист</button>
+        </div>
+    </div>
+</body>
+</html>
